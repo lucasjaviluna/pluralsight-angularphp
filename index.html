@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.col {
+				float: left;
+				width: 50%;
+			}
+		</style>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="angular-route.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+	</head>
+	<body ng-app="funwithcountries">
+		<h1>Fun With Countries</h1>
+		<div ng-controller="CountryController as countryCtrl" class="col">
+			<ul>
+				<li ng-repeat="country in countryCtrl.countries">
+					<a href ng-href="#/states/{{ country.code }}">
+						<img ng-src="images/{{ country.code }}.png">
+						{{ country.name }}
+					</a>
+
+					<!--<state-view></state-view>-->
+				</li>
+			</ul>
+		</div>
+
+		<div class="col" ng-view></div>
+	</body>
+</html>

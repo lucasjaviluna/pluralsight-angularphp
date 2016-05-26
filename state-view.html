@@ -1,0 +1,25 @@
+<!--
+<div>
+	<ul ng-show="country.states.length > 0">
+		<li ng-repeat="state in country.states">
+			{{ state.name }}
+		</li>
+	</ul>
+	<input type="text" name="state" ng-model="stateCtrl.newState">
+	<a href="" ng-click="stateCtrl.addStateTo(country)"> Add state {{ stateCtrl.newState }} </a>
+</div>
+-->
+
+<div>
+	<b>{{stateCtrl.params.countryCode}}</b>
+	<ul ng-show="stateCtrl.states.length > 0">
+		<li ng-repeat="state in stateCtrl.states">
+			{{ state.name }}
+		</li>
+	</ul>
+	<input type="text" name="state" ng-model="stateCtrl.newState">
+	<a href="" ng-click="stateCtrl.addStateTo(country)"> Add state {{ stateCtrl.newState }} </a>
+	<p>
+		<a href="#/">back</a>
+	</p>
+</div>
