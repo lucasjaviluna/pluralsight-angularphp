@@ -14,7 +14,7 @@ class DBHelper {
 		)');
 		DBClass::execute('CREATE TABLE states (
 				name VARCHAR(50),
-				code VARCHAR(10) PRIMARY KEY
+				code VARCHAR(10)
 		)');
 	}
 
