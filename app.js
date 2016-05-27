@@ -10,6 +10,12 @@
 			},
 			getStates: function(countryCode) {
 				return $http.get(baseUrl + 'getStates.php?countryCode=' + encodeURIComponent(countryCode));
+			},
+			addState: function(name, countryCode) {
+				return $http.get(baseUrl + 'addState.php?name=' +
+					encodeURIComponent(name) + '&countryCode=' +
+					encodeURIComponent(countryCode)
+				);
 			}
 		};
 	});
@@ -56,13 +62,19 @@
 				});
 
 				this.addStateTo = function() {
-					if (this.newState !== '' && typeof(this.newState) !== 'undefined') {
+					if (!this.states) {
+						this.states = [];
+					}
+					this.states.push({name: this.newState});
+					countryService.addState(this.newState, this.params.countryCode);
+					this.newState = '';
+					/*if (this.newState !== '' && typeof(this.newState) !== 'undefined') {
 						if (!this.states) {
 							this.states = [];
 						}
 						this.states.push({name: this.newState});
 						this.newState = '';
-					}
+					}*/
 				};
 			},
 			controllerAs: 'stateCtrl'

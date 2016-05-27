@@ -1,7 +1,7 @@
 <?php
 
 class DBClass {
-	private static $DB_CONNECTIONSTRING = 'sqlite:/xampp/htdocs/angularjs-php/db/countries.db';
+	private static $DB_CONNECTIONSTRING = 'sqlite:/home/lucas.luna/MyProjects/pluralsight-angularphp/db/countries.sqlite';
 	private static $DB_USERNAME = '';
 	private static $DB_PASSWORD = '';
 
@@ -18,6 +18,7 @@ class DBClass {
 
 		$statement = self::$db->prepare($sql);
 		$statement->execute($values);
+		//var_dump($sql, $values);
 		return $statement;
 	}
 

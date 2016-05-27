@@ -1,14 +1,39 @@
 <?php
-require 'Country.php';
-require 'State.php';
-
+require_once 'Country.php';
+require_once 'State.php';
+require_once 'DBHelper.php';
 //https://apigility.org
 
 class CountryRepository {
-	private static $countries = [];
+	//private static $countries = [];
 
-	protected static function init(){
-		$countries = [];
+	public static function init(){
+		DBHelper::resetDB();
+
+		DBHelper::addCountry(
+			new Country('United States', 'US', [
+				new State('California'), new State('North Dakota'), new State('Wyoming')
+			])
+		);
+		DBHelper::addCountry(
+			new Country('Canada', 'CA', [
+				new State('Ontario'), new State('Quebec')
+			])
+		);
+		DBHelper::addCountry(
+			new Country('Germany', 'DE', [
+				new State('Bavaria'), new State('Berlin')
+			])
+		);
+		DBHelper::addCountry(
+			new Country('Austria', 'AT', [
+				new State('Styria'), new State('Tyrol')
+			])
+		);
+		DBHelper::addCountry(
+			new Country('Luxembourg', 'LU')
+		);
+		/*$countries = [];
 		array_push($countries,
 			new Country('Austria', 'AT', [
 				new State('Styria'), new State('Vienna')
@@ -23,18 +48,20 @@ class CountryRepository {
 			new Country('Luxembourg', 'LU')
 		);
 
-		self::$countries = $countries;
+		self::$countries = $countries;*/
 	}
 
 	public static function getCountries() {
-		if (count(self::$countries) === 0) {
+		return DBHelper::getCountries();
+		/*if (count(self::$countries) === 0) {
 			self::init();
 		}
-		return self::$countries;
+		return self::$countries;*/
 	}
 
 	public static function getStates($countryCode) {
-		if (count(self::$countries) === 0) {
+		return DBHelper::getStates(new Country('', $countryCode));
+		/*if (count(self::$countries) === 0) {
 			self::init();
 		}
 		$country = array_filter(self::$countries, function($c) use ($countryCode) {
@@ -46,7 +73,10 @@ class CountryRepository {
 		}
 
 		$firstCountry = array_shift($country);
-		return $firstCountry->states;
+		return $firstCountry->states;*/
 	}
 
+	public static function addState($name, $countryCode) {
+		return DBHelper::addState(new State($name), new Country('', $countryCode));
+	}
 }
